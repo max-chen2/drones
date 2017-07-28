@@ -36,5 +36,5 @@ If delivery orders and drone numbers increase, the solution should still work, b
 Modifications:
 1. Add a IsAtDepot property on drones to simplify. Drones arrive at depot and this property updates. This can be served by another API method e.g. /standbydrones. The drones that are returned in this request should be prioritised and assigned without auctioning.
 2. Persist ETA data with drone, in addition to drone's location, on dispatching a drone to deliver, the ETA timestamp can be calculated and persisted for each drone. The eta should include delivery time + getting back to depot time. The auction process will be more proformant.
-3. If operating in a large area, e.g. State, Country. Drones should be partitioned by region.
+3. If operating in a large area, e.g. State, Country. Drones should be triaged into separate dispatching service centres partitioned by region.
 4. If drones can carry more than 1 package, routing would be a good addition.
