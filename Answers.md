@@ -23,7 +23,7 @@ Then the next easier package.
 
 The distance and difficulties for drones and packages are pre-calculated, to reduce unnecessary repeated calculation.
 
-My first approach was running through the auction process by defualt order that packages list comes in with. I always assign the best drone to the current package. The problem I had was, some packages that are easy but reserves the best drone. (this is interpreted from the requirement that a package should be assigned to the drone that delivers quickest). However, the problem with that is, less number of packages gets delivered each dispatch.
+My first approach was running through the auction process by default order that packages list comes in with. I always assign the best drone to the current package. The problem I had was, some packages that are easy but reserves the best drone. (this is interpreted from the requirement that a package should be assigned to the drone that delivers quickest). However, the problem with that is, less number of packages gets delivered.
 
 So in my final approach, i have re-arranged the packages by difficulty and this enables me to deliver more packages. (while still assigning the best and quickest drone for each package).
 
@@ -34,7 +34,7 @@ So in my final approach, i have re-arranged the packages by difficulty and this 
 If delivery orders and drone numbers increase, the solution should still work, but there can be occurrences that the dispatcher system does not provide the most optimized solution. E.g. During dispatching calculation, due to the high number of packages and drones, drones can be arriving (are all drones returned from the /drones request), or becomes online? If this happens, the drone just arrived or became online should be the best candidate for any package. However, in this case, can be missed by dispatcher service.
 
 Modifications:
-1. Add a IsAtDepot property on drones to simplify. Drones arrive at depot and this property updates. This can be served by another API method e.g. /standbydrones. The drones that are returned in this request should be prioritised and assigned without auctioning.
+1. Add a IsAtDepot property on drones' persistance provider to simplify distance calculation. Drones arrive at depot and this property updates. This can be served by another API method e.g. /standbydrones. The drones that are returned in this request should be prioritised and assigned without auctioning.
 2. Persist ETA data with drone, in addition to drone's location, on dispatching a drone to deliver, the ETA timestamp can be calculated and persisted for each drone. The eta should include delivery time + getting back to depot time. The auction process will be more proformant.
 3. If operating in a large area, e.g. State, Country. Drones should be triaged into separate dispatching service centres partitioned by region.
 4. If drones can carry more than 1 package, routing would be a good addition.
